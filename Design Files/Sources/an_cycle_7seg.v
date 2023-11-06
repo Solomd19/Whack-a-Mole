@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/19/2020 11:29:12 AM
+// Create Date: 11/19/2020 11:25:13 AM
 // Design Name: 
-// Module Name: mux4to1
+// Module Name: my_counter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,20 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux4to1( 
-    input [3:0] A,
-    input [3:0] B,
-    input [3:0] C,
-    input [3:0] D,
-    input [1:0] sel,
+module an_cycle_7seg(
+    input clk,
 
-    output [3:0] Y
+    output reg [1:0] Q = 0
 );
 
-    //selector switches decide what data at the input data lines go through to the output (Y).
-    assign Y =  (sel==0) ? A :
-                (sel==1) ? B :
-                (sel==2) ? C :
-                            D;
+    // Counts from 0-3 at the rate of clk
+    always @ (posedge clk)
+        q <= q + 1;
 
 endmodule

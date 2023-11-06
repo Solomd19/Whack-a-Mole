@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/19/2020 11:22:55 AM
+// Create Date: 12/05/2020 03:35:45 PM
 // Design Name: 
-// Module Name: slowclock
+// Module Name: game_timer_clk
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,24 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module slowclock (
-    input clk_in, // On Basys 3 board, 100MHz clock
+module game_timer_clk(
+    input clk_in, // 100MHz input clk
 
-    output reg clk_out // Input clock divided down to 200Hz pulse
+    output clk_out // 1Hz output pulse
 );
     
-    reg [20:0] period_count = 0;
+    reg [27:0] period_count = 0;
 
     always @ (posedge clk_in) begin
-        if (period_count != 500_000 - 1) begin // If the input clock has not counted to the max yet, keep clk_out low
-            period_count <= period_count + 1;
-            clk_out <= 0;
-        end
-        else begin // Once the count has reached max, pulse clk_out for 1 tick
+        if (period_count == 100_000_000 - 1) begin
             period_count <= 0;
             clk_out <= 1;
         end
+        else begin
+            period_count <= period_count + 1;
+            clk_out <= 0;
+        end
     end
-
+        
 endmodule
-

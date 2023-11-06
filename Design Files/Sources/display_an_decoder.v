@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 12/05/2020 03:35:45 PM
+// Create Date: 11/19/2020 11:32:37 AM
 // Design Name: 
-// Module Name: gameTimer
+// Module Name: display_an_decoder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,21 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module timerClock(
-    input clk_in,
+module display_an_decoder (
+    input [1:0] en,
 
-    output clk_out
+    output reg [3:0] an
 );
-    
-    reg [27:0] period_count = 0;
 
-    always @ (posedge clk_in) begin
-        if (period_count == 100000000 - 1)
-            period_count<= 0;
-        else
-            period_count <= period_count + 1;
+    // Turns the binary en input into a decoded an output
+    always @ (*) begin
+        case (en)
+            0: an = 4'b1110;
+            1: an = 4'b1101;
+            2: an = 4'b1011;
+            3: an = 4'b0111;
+        endcase
     end
-    
-    assign clk_out = (period_count == 100000000 - 1);
-    
+
 endmodule

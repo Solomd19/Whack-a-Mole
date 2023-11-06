@@ -5,7 +5,7 @@
 // 
 // Create Date: 11/18/2020 10:41:21 AM
 // Design Name: 
-// Module Name: binary_to_BCD
+// Module Name: bin_to_bcd
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module binarytobcd(
+module bin_to_bcd(
     input [7:0] timerInput, 	//These refers to B0 to B7 as shown above in the circuit. 
     input [7:0] scoreInput,
 
