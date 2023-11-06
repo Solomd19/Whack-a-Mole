@@ -49,7 +49,7 @@ module whack_a_mole_top(
 	// Parameterize input and output clk freq to make calculation
 
 	// Also could make a generic counter module with a param for the max value and that would take care of a lot of stuff
-	// Hi mom
+	// Hi mom and dad
 	
 	wire clk_out;
 	wire [3:0] mux_out;
