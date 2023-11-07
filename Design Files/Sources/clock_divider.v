@@ -33,18 +33,18 @@ module clock_divider #(
     localparam CLK_OUT_HALF_PERIOD_TICKS = CLK_IN_FREQ_HZ / (CLK_OUT_FREQ_HZ * 2);
     localparam CLK_OUT_PERIOD_TICKS = CLK_IN_FREQ_HZ / CLK_OUT_FREQ_HZ;
 
-    reg [$clog2(CLK_OUT_HALF_PERIOD_TICKS)-1:0] half_period_count = 0;
+    reg [$clog2(CLK_OUT_PERIOD_TICKS)-1:0] period_count = 0;
 
     always @ (posedge clk_in) begin
-        if (half_period_count >= CLK_OUT_HALF_PERIOD_TICKS - 1) begin // If the counter has reached max value...
-            half_period_count <= 0; // Reset the count
+        if ((!PULSE_MODE & period_count >= CLK_OUT_HALF_PERIOD_TICKS - 1) | (PULSE_MODE & period_count >= CLK_OUT_PERIOD_TICKS - 1)) begin // If the counter has reached max value...
+            period_count <= 0; // Reset the count
             if (PULSE_MODE)
                 clk_out <= 1;
             else
                 clk_out <= ~clk_out; // Toggle the output clock value
         end
         else begin // If the counter has not reached max value...
-            half_period_count <= half_period_count + 1;
+            period_count <= period_count + 1;
             if (PULSE_MODE)
                 clk_out <= 0;
             else

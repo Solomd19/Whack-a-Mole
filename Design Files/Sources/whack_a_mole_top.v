@@ -25,7 +25,7 @@ module whack_a_mole_top(
 	input reset,
 	input [15:0] sw,
 
-	output [15:0] LED,
+	output [15:0] led,
 	output [3:0] an,
 	output [6:0] seg
 );
@@ -64,12 +64,13 @@ module whack_a_mole_top(
 	wire [7:0] score_count; //Max score of 32
 
 	// Instantiate an instance of the game
+	// Game is currently hard coded, will be randomized in the future!
 	game game_inst(
 		.clk(clk),
 		.reset(reset),
 		.sw(sw),
 
-		.LED(LED),
+		.LED(led),
 		.score_count(score_count)
 	);
 

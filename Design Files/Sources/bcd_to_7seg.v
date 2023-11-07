@@ -23,7 +23,7 @@
 module bcd_to_7seg(
     input [3:0] bcd,
 
-    output [6:0] display
+    output reg [6:0] display
 );
 
     always @ (*) begin

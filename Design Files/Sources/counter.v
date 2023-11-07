@@ -34,7 +34,7 @@ module counter #(
 );
 
     always @ (posedge clk) begin 
-        if (reset) // If the module is reset, return to the initial value
+        if (srst) // If the module is reset, return to the initial value
             count <= INITIAL_VALUE;
         else if (enable & count != STOP_VALUE) // Only change the counter value if the enable is asserted and the count is not at STOP_VALUE
             if (!COUNT_DOWN)

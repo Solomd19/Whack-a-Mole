@@ -90,7 +90,7 @@ module game(
         case (state)
  
             STATE_0: begin
-                score_count = 0;
+                score_count_next = 0;
                 LED_next = 0;
                 LED_next[0] = 1;
                 if (sw[0] == 1)
@@ -100,7 +100,7 @@ module game(
             end
 
             STATE_1: begin
-                score_count = 1;
+                score_count_next = 1;
                 LED_next = 0;
                 LED_next[1] = 1;
                 if (sw[1] == 1)
@@ -111,7 +111,7 @@ module game(
 
 
             STATE_2: begin
-                score_count = 2;
+                score_count_next = 2;
                 LED_next = 0;
                 LED_next[2] = 1;
                 if (sw[2] == 1)
@@ -121,7 +121,7 @@ module game(
             end
  
             STATE_3: begin
-                score_count = 3;
+                score_count_next = 3;
                 LED_next = 0;
                 LED_next[3] = 1;
                 if (sw[3] == 1)
@@ -131,7 +131,7 @@ module game(
             end
 
             STATE_4: begin
-                score_count = 4;
+                score_count_next = 4;
                 LED_next = 0;
                 LED_next[4] = 1;
                 if (sw[4] == 1)
@@ -141,7 +141,7 @@ module game(
             end
 
             STATE_5: begin
-                score_count = 5;
+                score_count_next = 5;
                 LED_next = 0;
                 LED_next[5] = 1;
                 if (sw[5] == 1)
@@ -151,7 +151,7 @@ module game(
             end
 
             STATE_6: begin
-                score_count = 6;
+                score_count_next = 6;
                 LED_next = 0;
                 LED_next[6] = 1;
                 if (sw[6] == 1)
@@ -161,7 +161,7 @@ module game(
             end
 
             STATE_7: begin
-                score_count = 7;
+                score_count_next = 7;
                 LED_next = 0;
                 LED_next[7] = 1;
                 if (sw[7] == 1)
@@ -171,7 +171,7 @@ module game(
             end
 
             STATE_8: begin
-                score_count = 8;
+                score_count_next = 8;
                 LED_next = 0;
                 LED_next[8] = 1;
                 if (sw[8] == 1)
@@ -181,7 +181,7 @@ module game(
             end
 
             STATE_9: begin
-                score_count = 9;
+                score_count_next = 9;
                 LED_next = 0;
                 LED_next[9] = 1;
                 if (sw[9] == 1)
@@ -191,7 +191,7 @@ module game(
             end
 
             STATE_10: begin
-                score_count = 10;
+                score_count_next = 10;
                 LED_next = 0;
                 LED_next[10] = 1;
                 if (sw[10] == 1)
@@ -201,7 +201,7 @@ module game(
             end
 
             STATE_11: begin
-                score_count = 11;
+                score_count_next = 11;
                 LED_next = 0;
                 LED_next[11] = 1;
                 if (sw[11] == 1)
@@ -211,7 +211,7 @@ module game(
             end
 
             STATE_12: begin
-                score_count = 12;
+                score_count_next = 12;
                 LED_next = 0;
                 LED_next[12] = 1;
                 if (sw[12] == 1)
@@ -221,7 +221,7 @@ module game(
             end
 
             STATE_13: begin
-                score_count = 13;
+                score_count_next = 13;
                 LED_next = 0;
                 LED_next[13] = 1;
                 if (sw[13] == 1)
@@ -231,7 +231,7 @@ module game(
             end
 
             STATE_14: begin
-                score_count = 14;
+                score_count_next = 14;
                 LED_next = 0;
                 LED_next[14] = 1;
                 LED_next[12] = 0;
@@ -242,7 +242,7 @@ module game(
             end
 
             STATE_15: begin
-                score_count = 15;
+                score_count_next = 15;
                 LED_next = 0;
                 LED_next[15] = 1;
                 if (sw[15] == 1)
@@ -254,7 +254,7 @@ module game(
             //Turnaround point
 
             STATE_16: begin
-                score_count = 16;
+                score_count_next = 16;
                 LED_next = 0;
                 LED_next[0] = 1;
                 if (sw[0] == 0)
@@ -265,7 +265,7 @@ module game(
 
 
             STATE_17: begin
-                score_count = 17;
+                score_count_next = 17;
                 LED_next = 0;
                 LED_next[1] = 1;
                 if (sw[1] == 0)
@@ -275,7 +275,7 @@ module game(
             end
 
             STATE_18: begin
-                score_count = 18;
+                score_count_next = 18;
                 LED_next = 0;
                 LED_next[2] = 1;
                 if (sw[2] == 0)
@@ -285,7 +285,7 @@ module game(
             end
 
             STATE_19: begin
-                score_count = 19;
+                score_count_next = 19;
                 LED_next = 0;
                 LED_next[3] = 1;
                 if (sw[3] == 0)
@@ -295,7 +295,7 @@ module game(
             end
 
             STATE_20: begin
-                score_count = 20;
+                score_count_next = 20;
                 LED_next = 0;
                 LED_next[4] = 1;
                 if (sw[4] == 0)
@@ -305,7 +305,7 @@ module game(
             end
 
             STATE_21: begin
-                score_count = 21;
+                score_count_next = 21;
                 LED_next = 0;
                 LED_next[5] = 1;
                 if (sw[5] == 0)
@@ -315,7 +315,7 @@ module game(
             end
 
             STATE_22: begin
-                score_count = 22;
+                score_count_next = 22;
                 LED_next = 0;
                 LED_next[6] = 1;
                 if (sw[6] == 0)
@@ -325,7 +325,7 @@ module game(
             end
 
             STATE_23: begin
-                score_count = 23;
+                score_count_next = 23;
                 LED_next = 0;
                 LED_next[7] = 1;
                 if (sw[7] == 0)
@@ -335,7 +335,7 @@ module game(
             end
 
             STATE_24: begin
-                score_count = 24;
+                score_count_next = 24;
                 LED_next = 0;
                 LED_next[8] = 1;
                 if (sw[8] == 0)
@@ -345,7 +345,7 @@ module game(
             end
 
             STATE_25: begin
-                score_count = 25;
+                score_count_next = 25;
                 LED_next = 0;
                 LED_next[9] = 1;
                 if (sw[9] == 0)
@@ -355,7 +355,7 @@ module game(
             end
 
             STATE_26: begin
-                score_count = 26;
+                score_count_next = 26;
                 LED_next = 0;
                 LED_next[10] = 1;
                 if (sw[10] == 0)
@@ -365,7 +365,7 @@ module game(
             end
 
             STATE_27: begin
-                score_count = 27;
+                score_count_next = 27;
                 LED_next = 0;
                 LED_next[11] = 1;
                 if (sw[11] == 0)
@@ -375,7 +375,7 @@ module game(
             end
 
             STATE_28: begin
-                score_count = 28;
+                score_count_next = 28;
                 LED_next = 0;
                 LED_next[12] = 1;
                 if (sw[12] == 0)
@@ -385,7 +385,7 @@ module game(
             end
 
             STATE_29: begin
-                score_count = 29;
+                score_count_next = 29;
                 LED_next = 0;
                 LED_next[13] = 1;
                 if (sw[13] == 0)
@@ -395,7 +395,7 @@ module game(
             end
 
             STATE_30: begin
-                score_count = 30;
+                score_count_next = 30;
                 LED_next = 0;
                 LED_next[14] = 1;
                 if (sw[14] == 0)
@@ -405,7 +405,7 @@ module game(
             end
 
             STATE_31: begin
-                score_count = 31;
+                score_count_next = 31;
                 LED_next = 0;
                 LED_next[15] = 1;
                 if (sw[15] == 0)
@@ -415,7 +415,7 @@ module game(
             end
 
             STATE_32: begin // End of the game
-                score_count = 32;
+                score_count_next = 32;
                 LED_next = 0;
                 state_next = STATE_32;
             end
