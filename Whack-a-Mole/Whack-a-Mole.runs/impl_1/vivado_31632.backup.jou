@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Mon Nov  6 23:21:19 2023
+# Process ID: 31632
+# Current directory: C:/Users/Drew Solomon/Documents/GitHub/Whack-a-Mole/Whack-a-Mole/Whack-a-Mole.runs/impl_1
+# Command line: vivado.exe -log whack_a_mole_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source whack_a_mole_top.tcl -notrace
+# Log file: C:/Users/Drew Solomon/Documents/GitHub/Whack-a-Mole/Whack-a-Mole/Whack-a-Mole.runs/impl_1/whack_a_mole_top.vdi
+# Journal file: C:/Users/Drew Solomon/Documents/GitHub/Whack-a-Mole/Whack-a-Mole/Whack-a-Mole.runs/impl_1\vivado.jou
+# Running On: DESKTOP-55DQIAJ, OS: Windows, CPU Frequency: 3800 MHz, CPU Physical cores: 16, Host memory: 68642 MB
+#-----------------------------------------------------------
+source whack_a_mole_top.tcl -notrace
