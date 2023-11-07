@@ -29,54 +29,39 @@ module whack_a_mole_top(
 	output [3:0] an,
 	output [6:0] seg
 );
-
-	// To-do List:
-	// bin_to_bcd
-	// mux4 DONE
-	// slowclock DONE
-	// an_cycle_7seg DONE
-	// display_an_decoder DONE
-	// bcd_to_7seg DONE
-	// game_timer_clk DONE
-	// game_timer_counter DONE
-	// game
-	// whack_a_mole_top
-
-	// Just make a clock divider module and use it twice instead of using:
-	// slowclock
-	// game_timer_clk
-	// Give it a parameter or something idk
-	// Parameterize input and output clk freq to make calculation
-
-	// Also could make a generic counter module with a param for the max value and that would take care of a lot of stuff
-	// Hi mom and dad
-	
-	wire clk_out;
-	wire [3:0] mux_out;
-	wire [1:0] counter_out;
-	wire [3:0] timerOnes, timerTens, scoreOnes, scoreTens;
-	wire [7:0] score_count; //Max score of 32
-	wire [7:0] timer_count; //Timer goes for 30 seconds
-	
+		
 	// Game Timer ///////////////////////////////////////////////////////////////////////////////////////////
 
+	wire game_timer_pulse;
+	wire [7:0] timer_count; //Timer goes for 30 seconds
+
 	// Creates a 1Hz output clock to decrement the value of the game timer
-	game_timer_clk game_timer_clk_inst(
-		.clk_in(clk),
+	clock_divider #(
+		.CLK_IN_FREQ_HZ(100_000_000),
+		.CLK_OUT_FREQ_HZ(1),
+		.PULSE_MODE(1)
+	)clock_divider_game_timer(
+		.clk_in(clk), // Input clock
 
-		.clk_out(timerClk_out)
+		.clk_out(game_timer_pulse) // Output clock divided from input clock
 	);
-	
-	game_timer_counter game_timer_counter_inst(
-		.clk(clk),
-		.reset(reset),
-		.increment(),
-		.decrement(timerClk_out),
 
-		.count(timer_count)
+	counter #(
+		.INITIAL_VALUE(20), // Initial value of the counter on reset
+		.COUNT_DOWN(1), // Toggle to count down instead of count up
+		.STOP_VALUE(0), // Value at which to stop the count
+		.COUNTER_BITS(5) // Bit length of the counter - adjust as needed
+	)counter_game_timer(
+		.clk(clk),
+		.srst(reset), // Sycnhronous reset to clk
+		.enable(game_timer_pulse), // Value of counter will only change if enable is asserted at time of clk posedge
+
+		.count(timer_count) // Value of the counter
 	);
 
 	// The Actual Game ///////////////////////////////////////////////////////////////////////////////////////////
+
+	wire [7:0] score_count; //Max score of 32
 
 	// Instantiate an instance of the game
 	game game_inst(
@@ -90,6 +75,11 @@ module whack_a_mole_top(
 
 	// 7-Segment Display ///////////////////////////////////////////////////////////////////////////////////////////
 	
+	wire [3:0] timerOnes, timerTens, scoreOnes, scoreTens;
+	wire display_pulse;
+	wire [1:0] counter_out;
+	wire [3:0] mux_out;
+
 	// Instantiate Binary to BCD (Binary Coded Decimal) converter to convert internal signals to display output
 	bin_to_bcd bin_to_bcd_inst(
 		.timerInput(timer_count),
@@ -99,6 +89,37 @@ module whack_a_mole_top(
 		.timerTens(timerTens),
 		.scoreOnes(scoreOnes),
 		.scoreTens(scoreTens)
+	);
+
+	// Instantiate slowclock module to create a 200Hz clock for display cycling
+	clock_divider #(
+		.CLK_IN_FREQ_HZ(100_000_000),
+		.CLK_OUT_FREQ_HZ(200),
+		.PULSE_MODE(1)
+	)clock_divider_display_en(
+		.clk_in(clk), // Input clock
+
+		.clk_out(display_pulse) // Output clock divided from input clock
+	);
+
+	counter #(
+		.INITIAL_VALUE(0), // Initial value of the counter on reset
+		.COUNT_DOWN(0), // Toggle to count down instead of count up
+		.STOP_VALUE(32'hFFFFFFFF), // Value at which to stop the count
+		.COUNTER_BITS(2) // Bit length of the counter - adjust as needed
+	)counter_display_en(
+		.clk(clk),
+		.srst(reset), // Sycnhronous reset to clk
+		.enable(display_pulse), // Value of counter will only change if enable is asserted at time of clk posedge
+
+		.count(counter_out) // Value of the counter
+	);
+	
+	// Converts my_counter's output into a display enable signal
+	display_an_decoder display_an_decoder_inst(
+		.en(counter_out),
+
+		.an(an)
 	);
 
 	// Instantiate mux to cycle through display outputs
@@ -117,27 +138,6 @@ module whack_a_mole_top(
 		.bcd(mux_out),
 
 		.display(seg) // 7 segment display LED output
-	);
-	
-	// Instantiate slowclock module to create a 200Hz clock for display cycling
-	slowclock slowclock_inst(
-		.clk_in(clk), // 100MHz clock
-
-		.clk_out(clk_out) // 200Hz clock
-	);
-	
-	// Instantiate counter to count 0-3 for display cycling
-	an_cycle_7seg an_cycle_7seg_inst(
-		.clk(clk_out), // 200Hz clock
-
-		.Q(counter_out)
-	);
-	
-	// Converts my_counter's output into a display enable signal
-	display_an_decoder display_an_decoder_inst(
-		.en(counter_out),
-
-		.an(an)
 	);
 
 endmodule

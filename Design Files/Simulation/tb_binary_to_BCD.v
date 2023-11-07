@@ -20,15 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module tb_binary_to_BCD(
-
-    );
+module tb_binary_to_BCD();
     
-    reg [7:0]aa;
-    wire [3:0]ones,tens;
-    wire [1:0]hundreds;
+    reg [7:0] aa;
+    wire [3:0] ones, tens;
+    wire [1:0] hundreds;
     
-    binary_to_BCD U0(aa,ones,tens,hundreds);
+    bin_to_bcd bin_to_bcd_inst(aa, ones, tens, hundreds);
     
     initial begin
         aa = 8'b0000_0000;

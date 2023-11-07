@@ -67,7 +67,7 @@ module game(
     reg [7:0] state = 0; // Current State
     reg [7:0] state_next; // Next State
 
-    reg [15:0] LED_next = 0
+    reg [15:0] LED_next = 0;
     reg [5:0] score_count_next = 0;
 
     // Sequential logic
