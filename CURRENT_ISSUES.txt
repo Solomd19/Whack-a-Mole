@@ -1,0 +1,11 @@
+- Timer clock first tick can happen faster than 1 second of time since no proper reset
+- Max score of 99, stop game if it is reached and flash the display on and off a few times
+- Randomly generated mole positions
+- Parameterize game timer size, prob will want it to be bigger
+- Make better use of the buttons - maybe a timer adjust or mole difficulty adjust
+- Make it so moles can disappear if not hit for long enough
+- Moles can be hit by flicking switch no matter what its prior position is, no hard coding
+- "btnc", "rdy", "go", game/timer start - all words you can do on 7seg display
+- Maybe a rating system at the end - "poop", "bad", "eh.." "good", "nice", "lit"
+- Divide max score of 99 into 6 sections for each rating eg. 0-17 = Poop
+- Game should refuse to take game input after the timer is up
